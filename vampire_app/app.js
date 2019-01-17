@@ -153,6 +153,37 @@ Vampire.find({title: {$exists: true}, victims: {$exists: false}}, (err, vampire)
 });
 /////////////////////////////////////////////////
 // ### Select with OR
+Vampire.find({$or: [{location: 'New York, New York, US'},{location: "New Orleans, Louisiana, US"}]}, (err, vampire)=>{
+    if (err) {
+        console.log(err);
+    }else{
+        console.log(`Or locations`, vampire);
+    }
+});
+
+Vampire.find({$or: [{loves: 'brooding'},{loves: "being tragic"}]}, (err, vampire)=>{
+    if (err) {
+        console.log(err);
+    }else{
+        console.log(`Or loves`, vampire);
+    }
+});
+
+Vampire.find({$or: [{victims: {$gt: 1000}},{loves: "marshmallows"}]}, (err, vampire)=>{
+    if (err) {
+        console.log(err);
+    }else{
+        console.log(`1000 victims or loves marshmallows`, vampire);
+    }
+});
+
+Vampire.find({$or: [{hair_color: 'red'},{eye_color: "green"}]}, (err, vampire)=>{
+    if (err) {
+        console.log(err);
+    }else{
+        console.log(`red hair or green eyes`, vampire);
+    }
+});
 
 /////////////////////////////////////////////////
 //### Select objects that match one of several values
