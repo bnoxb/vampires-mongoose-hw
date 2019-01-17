@@ -95,7 +95,7 @@ Vampire.find({gender:'f'}, (err, vampire)=>{
     if(err) {
         console.log(err);
     }else {
-        console.log(vampire);
+        console.log("Females", vampire);
     }
 });
 
@@ -103,7 +103,7 @@ Vampire.find({victims: {$gt:500}}, (err, vampire)=>{
     if(err){
         console.log(err);
     }else {
-        console.log(vampire);
+        console.log(`Greater than 500`, vampire);
     }
 });
 
@@ -111,26 +111,46 @@ Vampire.find({victims:{$lte: 150}}, (err, vampire)=>{
     if (err) {
         console.log(err);
     }else{
-        console.log(vampire);
+        console.log(`less than 150`, vampire);
     }
 });
 Vampire.find({victims:{$ne: 210234}}, (err, vampire)=>{
     if (err) {
         console.log(err);
     }else{
-        console.log(vampire);
+        console.log("210234 victims", vampire);
     }
 });
-Vampire.find({victims:{$gt: 150, $lt:500},}, (err, vampire)=>{
+Vampire.find({victims:{$gt: 150, $lt:500}}, (err, vampire)=>{
+    if (err) {
+        console.log(err);
+    }else{
+        console.log("Greater than 150 less than 500", vampire);
+    }
+});
+/////////////////////////////////////////////////
+// ### Select by exists or does not exist
+Vampire.find({title: {$exists: true}}, (err, vampire)=>{
     if (err) {
         console.log(err);
     }else{
         console.log(vampire);
     }
 });
-/////////////////////////////////////////////////
-// ### Select by exists or does not exist
-
+Vampire.find({victims: {$exists: false}}, (err, vampire)=>{
+    if (err) {
+        console.log(err);
+    }else{
+        console.log(vampire);
+    }
+});
+Vampire.find({title: {$exists: true}, victims: {$exists: false}}, (err, vampire)=>{
+    if (err) {
+        console.log(err);
+    }else{
+        console.log(vampire);
+    }
+});
 /////////////////////////////////////////////////
 // ### Select with OR
 
